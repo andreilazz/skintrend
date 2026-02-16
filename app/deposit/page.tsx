@@ -29,7 +29,7 @@ export default function Deposit() {
     const toastId = toast.loading('Processing payment...');
 
     try {
-      const res = await fetch('http://localhost:3001/trading/deposit', {
+      const res = await fetch('https://api.skintrend.skin/trading/deposit', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,

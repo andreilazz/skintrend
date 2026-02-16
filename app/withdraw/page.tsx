@@ -25,7 +25,7 @@ export default function Withdraw() {
     setToken(savedToken);
 
     // Luăm profilul complet (email status inclus)
-    fetch('http://localhost:3001/auth/profile', {
+    fetch('https://api.skintrend.skin/auth/profile', {
       headers: { 'Authorization': `Bearer ${savedToken}` }
     })
     .then(res => res.json())
@@ -34,7 +34,7 @@ export default function Withdraw() {
       setIsEmailVerified(data.isEmailVerified); // Preluăm statusul verificării
     });
 
-    fetch('http://localhost:3001/trading/balance', {
+    fetch('https://api.skintrend.skin/trading/balance', {
       headers: { 'Authorization': `Bearer ${savedToken}` }
     })
     .then(res => res.json())
@@ -58,7 +58,7 @@ export default function Withdraw() {
     const toastId = toast.loading('Submitting request...');
 
     try {
-      const res = await fetch('http://localhost:3001/trading/withdraw', {
+      const res = await fetch('https://api.skintrend.skin/trading/withdraw', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,

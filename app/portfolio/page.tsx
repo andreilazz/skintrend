@@ -23,9 +23,9 @@ export default function Portfolio() {
   const fetchPortfolioData = async (validToken: string) => {
     try {
       const [analyticsRes, posRes, histRes] = await Promise.all([
-        authFetch('http://localhost:3001/trading/analytics', validToken),
-        authFetch('http://localhost:3001/trading/positions', validToken),
-        authFetch('http://localhost:3001/trading/history', validToken)
+        authFetch('https://api.skintrend.skin/trading/analytics', validToken),
+        authFetch('https://api.skintrend.skin/trading/positions', validToken),
+        authFetch('https://api.skintrend.skin/trading/history', validToken)
       ]);
 
       if (analyticsRes.ok) setAnalytics(await analyticsRes.json());
@@ -44,7 +44,7 @@ export default function Portfolio() {
     if (!token) return;
     const toastId = toast.loading('Closing position...');
     try {
-      const res = await fetch(`http://localhost:3001/trading/close/${id}`, {
+      const res = await fetch(`https://api.skintrend.skin/trading/close/${id}`, {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${token}` }
       });

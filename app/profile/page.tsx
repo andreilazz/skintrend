@@ -22,7 +22,7 @@ export default function Profile() {
     setToken(savedToken);
 
     // Profile Data
-    fetch('http://localhost:3001/auth/profile', {
+    fetch('https://api.skintrend.skin/auth/profile', {
       headers: { 'Authorization': `Bearer ${savedToken}` }
     })
     .then(res => res.json())
@@ -33,7 +33,7 @@ export default function Profile() {
     });
 
     // Transactions History
-    fetch('http://localhost:3001/trading/transactions', {
+    fetch('https://api.skintrend.skin/trading/transactions', {
       headers: { 'Authorization': `Bearer ${savedToken}` }
     })
     .then(res => res.json())
@@ -51,7 +51,7 @@ export default function Profile() {
     if (newPassword) body.newPassword = newPassword;
 
     try {
-      const res = await fetch('http://localhost:3001/auth/profile', {
+      const res = await fetch('https://api.skintrend.skin/auth/profile', {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -79,7 +79,7 @@ export default function Profile() {
     const toastId = toast.loading('Sending verification link...');
     try {
       // Vom crea această rută în backend imediat
-      const res = await fetch('http://localhost:3001/auth/send-verification', {
+      const res = await fetch('https://api.skintrend.skin/auth/send-verification', {
         method: 'POST',
         headers: { 
             'Authorization': `Bearer ${token}`,

@@ -58,18 +58,18 @@ export default function TradePage() {
   const updateAllData = async () => {
     if (!token || !itemRef.current) return;
     try {
-      const pRes = await fetch(`http://localhost:3001/prices/history?item=${encodeURIComponent(itemRef.current)}&timeframe=${timeframeRef.current}`);
+      const pRes = await fetch(`https://api.skintrend.skin/prices/history?item=${encodeURIComponent(itemRef.current)}&timeframe=${timeframeRef.current}`);
       const pJson = await pRes.json();
       if (Array.isArray(pJson)) setData(pJson);
 
-      const posRes = await authFetch('http://localhost:3001/trading/positions');
+      const posRes = await authFetch('https://api.skintrend.skin/trading/positions');
       const posJson = await posRes.json();
       if (Array.isArray(posJson)) setPositions(posJson);
 
-      const balRes = await authFetch('http://localhost:3001/trading/balance');
+      const balRes = await authFetch('https://api.skintrend.skin/trading/balance');
       const balJson = await balRes.json();
       if (balJson && balJson.balance !== undefined) {
-        const profileRes = await authFetch('http://localhost:3001/auth/profile');
+        const profileRes = await authFetch('https://api.skintrend.skin/auth/profile');
         const profileJson = await profileRes.json();
         const userData = { username: profileJson.username, balance: balJson.balance, avatar: profileJson.avatar };
         setUser(userData);
@@ -85,7 +85,7 @@ export default function TradePage() {
     const toastId = toast.loading('Executing order...');
     
     try {
-      const res = await authFetch('http://localhost:3001/trading/order', {
+      const res = await authFetch('https://api.skintrend.skin/trading/order', {
         method: 'POST',
         body: JSON.stringify({ type, amount: tradeAmount, assetName: selectedItem }),
       });
@@ -107,7 +107,7 @@ export default function TradePage() {
   const handleClose = async (id: number) => {
     const toastId = toast.loading('Closing position...');
     try {
-      const res = await authFetch(`http://localhost:3001/trading/close/${id}`, { method: 'POST' });
+      const res = await authFetch(`https://api.skintrend.skin/trading/close/${id}`, { method: 'POST' });
       if (res.ok) {
         toast.success('Position closed and settled.', { id: toastId });
         await updateAllData();
@@ -121,7 +121,7 @@ export default function TradePage() {
   };
 
   useEffect(() => {
-    fetch('http://localhost:3001/prices/catalog')
+    fetch('https://api.skintrend.skin/prices/catalog')
       .then(res => res.json())
       .then(json => {
         setCatalog(json);

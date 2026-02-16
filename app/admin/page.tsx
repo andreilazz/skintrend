@@ -12,7 +12,7 @@ export default function AdminDashboard() {
 
   const fetchStats = async (savedToken: string) => {
     try {
-      const res = await fetch('http://localhost:3001/trading/admin/stats', {
+      const res = await fetch('https://api.skintrend.skin/trading/admin/stats', {
         headers: { 'Authorization': `Bearer ${savedToken}` }
       });
       const data = await res.json();
@@ -27,7 +27,7 @@ export default function AdminDashboard() {
 
   const fetchPrices = async () => {
     try {
-      const res = await fetch('http://localhost:3001/prices/movers');
+      const res = await fetch('https://api.skintrend.skin/prices/movers');
       const data = await res.json();
       if (res.ok && Array.isArray(data)) {
         setPrices(data);
@@ -53,7 +53,7 @@ export default function AdminDashboard() {
     if (!token) return;
     const toastId = toast.loading('Processing action...');
     try {
-      const res = await fetch(`http://localhost:3001/trading/admin/withdraw/${txId}/${action}`, {
+      const res = await fetch(`https://api.skintrend.skin/trading/admin/withdraw/${txId}/${action}`, {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${token}` }
       });

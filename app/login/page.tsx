@@ -15,7 +15,7 @@ export default function Login() {
     e.preventDefault();
     setLoading(true);
 
-    const url = isLogin ? 'http://localhost:3001/auth/login' : 'http://localhost:3001/auth/register';
+    const url = isLogin ? 'https://api.skintrend.skin/auth/login' : 'https://api.skintrend.skin/auth/register';
 
     try {
       const res = await fetch(url, {
@@ -47,7 +47,7 @@ export default function Login() {
   };
 
   const handleSteamLogin = () => {
-    window.location.href = 'http://localhost:3001/auth/steam';
+    window.location.href = 'https://api.skintrend.skin/auth/steam';
   };
 
   return (

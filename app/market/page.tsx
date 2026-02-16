@@ -13,12 +13,12 @@ export default function Market() {
 
   const fetchMarkets = async () => {
     try {
-      const res = await fetch('http://localhost:3001/prices/movers');
+      const res = await fetch('https://api.skintrend.skin/prices/movers');
       const data = await res.json();
       if (res.ok) {
         // Pentru fiecare market, aducem și istoricul scurt pentru mini-grafic
         const enrichedData = await Promise.all(data.map(async (item: any) => {
-          const histRes = await fetch(`http://localhost:3001/prices/history?assetName=${encodeURIComponent(item.assetName)}`);
+          const histRes = await fetch(`https://api.skintrend.skin/prices/history?assetName=${encodeURIComponent(item.assetName)}`);
           const history = await histRes.json();
           return { ...item, history: history.slice(-20) }; // Ultimele 20 de puncte pentru sparkline
         }));

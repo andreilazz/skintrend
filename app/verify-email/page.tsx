@@ -21,7 +21,7 @@ function VerifyEmailContent() {
     }
 
     // Apelăm backend-ul pentru confirmare
-    fetch(`http://localhost:3001/auth/confirm-email/${token}`)
+    fetch(`https://api.skintrend.skin/auth/confirm-email/${token}`)
       .then(async (res) => {
         const data = await res.json();
         if (res.ok) {

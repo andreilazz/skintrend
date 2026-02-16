@@ -14,10 +14,10 @@ export default function Navbar() {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      fetch('http://localhost:3001/trading/balance', { headers: { 'Authorization': `Bearer ${token}` } })
+      fetch('https://api.skintrend.skin/trading/balance', { headers: { 'Authorization': `Bearer ${token}` } })
       .then(res => res.json()).then(data => setBalance(data.balance || 0));
 
-      fetch('http://localhost:3001/auth/profile', { headers: { 'Authorization': `Bearer ${token}` } })
+      fetch('https://api.skintrend.skin/auth/profile', { headers: { 'Authorization': `Bearer ${token}` } })
       .then(res => res.json()).then(data => setUser(data));
     }
 
