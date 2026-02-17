@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import Navbar from '../components/Navbar';
+import NewsTerminal from '@/components/NewsTerminal';
 
 export default function Home() {
   return (
@@ -10,7 +11,6 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 px-4 md:px-8 max-w-7xl mx-auto flex flex-col items-center text-center">
-        {/* Glow effect pe fundal */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-[#2997ff] opacity-[0.05] blur-[120px] rounded-full pointer-events-none" />
 
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.05] text-[#86868b] text-xs font-semibold uppercase tracking-widest mb-8">
@@ -43,6 +43,27 @@ export default function Home() {
           >
             View Marketplace
           </Link>
+        </div>
+      </section>
+
+      {/* NOU: Market Pulse Section (Terminalul de Știri) */}
+      <section className="py-20 px-4 md:px-8 max-w-7xl mx-auto">
+        <div className="flex flex-col lg:flex-row items-center gap-12">
+          {/* Textul din stânga */}
+          <div className="flex-1 text-center lg:text-left">
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tighter mb-4">
+              Market Pulse. <br />
+              <span className="text-[#86868b]">Stay ahead of the meta.</span>
+            </h2>
+            <p className="text-lg text-[#86868b] leading-relaxed mb-6 max-w-lg mx-auto lg:mx-0">
+              Valve's updates can shift the market in seconds. Our live feed ensures you're the first to know, keeping you connected directly to the source without leaving the platform.
+            </p>
+          </div>
+          
+          {/* Panoul din dreapta (News Terminal) */}
+          <div className="flex-1 w-full max-w-lg h-[450px]">
+            <NewsTerminal />
+          </div>
         </div>
       </section>
 
